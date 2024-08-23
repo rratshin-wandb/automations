@@ -9,7 +9,7 @@ jobs:
     env:
       WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
       - name: Set up Python     
         uses: actions/setup-python@v5
