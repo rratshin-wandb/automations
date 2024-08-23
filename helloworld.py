@@ -1,6 +1,6 @@
 def main():
 
-    #001
+    #002
     print("Hollow world!")
 
 if __name__ == '__main__':
