@@ -17,7 +17,7 @@ jobs:
           python-version: '3.12.5'
           cache: 'pip'
       - name: Install Dependencies
-        run: pip install wandb
+        run: pip install -r requirements.txt
       - name: Login to W&B
         run: wandb login
       - name: Launch Job
