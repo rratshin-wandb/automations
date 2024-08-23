@@ -1,4 +1,4 @@
-name: github-payload-test
+name: "GitHub Payload Test"
 on:
   repository_dispatch:
     types: "payload-test"
