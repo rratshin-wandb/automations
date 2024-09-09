@@ -1,4 +1,4 @@
-name: "WandB Launch Job"
+name: "W&B Evaluate + Comparison Report"
 on:
   repository_dispatch:
     types: "launch-job"
