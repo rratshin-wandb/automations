@@ -1,7 +1,7 @@
 name: "W&B Evaluate + Comparison Report"
 on:
   repository_dispatch:
-    types: "launch-job"
+    types: "evaluate-job"
 jobs:
   test:
     name: Test
