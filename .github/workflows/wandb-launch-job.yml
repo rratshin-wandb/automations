@@ -25,4 +25,4 @@ jobs:
         run: wandb login
       - name: Launch Job
         #run: wandb launch -j "russratshin/registry-tutorial/job-source-registry-tutorial-regdemo.py:latest" -q "Queue One"
-        run: wandb launch -j "russratshin/quicklaunch/job-source-quicklaunch-quicklaunch.py:v8" -q "Queue One" --config '{"overrides":{"args": [${{ env.TSTAMP }}]}}'
+        run: wandb launch -j "russratshin/quicklaunch/job-source-quicklaunch-quicklaunch.py:v8" --config '{"overrides":{"args":["${{env.TSTAMP}}"]}}' -q "Queue One"
