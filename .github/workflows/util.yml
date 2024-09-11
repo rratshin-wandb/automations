@@ -7,4 +7,4 @@ jobs:
     steps:
       - name: Get current date
         id: date
-        run: echo $(date +'%Y%m%d%k%M%S%N')
+        run: echo $(date +'%Y%m%d%H%M%S%N')
