@@ -8,16 +8,18 @@ ENTITY="reviewco"
 
 def main():
 
+    api = wandb.Api()
+
     tstamp = sys.argv[1]
 
-    api = wandb.Api()
     i_check_run = 0
     i_check_count = 0
-    i_kill = 1
+    i_kill = 40
     a_run_ids = ["production_" + tstamp, "candidate_" + tstamp]
     a_run_plus_states = ["production_" + tstamp + "-finished", "candidate_" + tstamp + "-finished"]
     while i_check_count < i_kill and i_check_run < len(a_run_plus_states):
         i_check_run = 0
+        api.flush()
         runs = api.runs(path=f"{ENTITY}/{PROJECT_NAME}")
         for run in runs:
             s_run_plus_state = run.displayName + "-" + run.state
