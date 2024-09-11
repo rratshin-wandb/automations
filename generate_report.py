@@ -23,7 +23,7 @@ def main():
         runs = api.runs(path=f"{ENTITY}/{PROJECT_NAME}")
         for run in runs:
             s_run_plus_state = run.displayName + "-" + run.state
-            print("FOUND [" + s_run_plus_state + "]")
+            # print("FOUND [" + s_run_plus_state + "]")
             if s_run_plus_state in a_run_plus_states:
                 print("MATCHED [" + s_run_plus_state + "]")
                 i_check_run = (i_check_run + 1)
