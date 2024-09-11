@@ -26,7 +26,7 @@ def main():
                 print(str(i_check_run))
         if i_check_run < len(a_run_ids):
             i_check_count = (i_check_count + 1)
-            print("i_check_count [" + i_check_count + "]")
+            print("i_check_count [" + str(i_check_count) + "]")
             time.sleep(30)
 
     if i_check_run == len(a_run_ids):
