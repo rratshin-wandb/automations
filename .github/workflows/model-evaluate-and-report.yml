@@ -4,7 +4,7 @@ on:
     types: "evaluate-model"
 jobs:
   test:
-    name: Test
+    name: Evaluate + Report
     runs-on: ubuntu-latest
     env:
       WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
