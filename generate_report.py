@@ -1,6 +1,7 @@
 import wandb
 import wandb_workspaces.reports.v2 as wr
 import os, sys
+import time
 wandb.require("core")
 
 PROJECT_NAME="eval-llama-3.1-8b-fine-tune"
@@ -9,8 +10,27 @@ ENTITY="reviewco"
 def main():
 
     tstamp = sys.argv[1]
+
+    api = wandb.Api()
+    i_check_run = 0
+    i_check_count = 0
+    i_kill = 20
     a_run_ids = ["production_" + tstamp, "candidate_" + tstamp]
-    generate_report(tstamp, a_run_ids)
+    while i_check_count < i_kill and i_check_run < len(a_run_ids):
+        i_check_run = 0
+        runs = api.runs(path=f"{ENTITY}/{PROJECT_NAME}")
+        for run in runs:
+            print(run.displayName)
+            if run.displayName in a_run_ids:
+                i_check_run = (i_check_run + 1)
+                print(str(i_check_run))
+        if i_check_run < len(a_run_ids):
+            i_check_count = (i_check_count + 1)
+            print("i_check_count [" + i_check_count + "]")
+            time.sleep(30)
+
+    if i_check_run == len(a_run_ids):
+        generate_report(tstamp, a_run_ids)
 
 def generate_report(tstamp, a_run_ids):
     report = wr.Report(
@@ -95,3 +115,4 @@ def get_tstamp():
 
 if __name__ == "__main__":
     main()
+
