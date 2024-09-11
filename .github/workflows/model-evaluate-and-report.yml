@@ -24,6 +24,6 @@ jobs:
       - name: Login to W&B
         run: wandb login
       - name: Launch Job - candidate
-        run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "candidate"]}}' -q "Queue One"
+        run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "candidate"]}}' -q "ReviewCo-Lambda-A10"
       - name: Launch Job - production
-        run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "production"]}}' -q "Queue One"
+        run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "production"]}}' -q "ReviewCo-Lambda-A10"
