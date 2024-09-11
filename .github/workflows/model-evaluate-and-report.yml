@@ -23,7 +23,7 @@ jobs:
         run: pip install -r ./requirements.txt
       - name: Login to W&B
         run: wandb login
-      - name: Launch Job
+      - name: Launch Job - candidate
         run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "candidate"]}}' -q "Queue One"
-      - name: Launch Job
+      - name: Launch Job - production
         run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "production"]}}' -q "Queue One"
