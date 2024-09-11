@@ -1,7 +1,7 @@
 name: "W&B Evaluate + Comparison Report"
 on:
   repository_dispatch:
-    types: "evaluate-job"
+    types: "evaluate-model"
 jobs:
   test:
     name: Test
@@ -9,6 +9,9 @@ jobs:
     env:
       WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
     steps:
+      - name: Get current date
+        id: date
+        run: echo "TSTAMP=20240911011823116043" >> $GITHUB_ENV
       - uses: actions/checkout@v4
       - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
       - name: Set up Python     
@@ -22,3 +25,5 @@ jobs:
         run: wandb login
       - name: Launch Job
         run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "candidate"]}}' -q "Queue One"
+      - name: Launch Job
+        run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "production"]}}' -q "Queue One"
