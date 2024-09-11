@@ -1,0 +1,27 @@
+name: "WandB Get Runs"
+on:
+  repository_dispatch:
+    types: "get-runs"
+jobs:
+  test:
+    name: Get Runs
+    runs-on: ubuntu-latest
+    env:
+      WANDB_API_KEY: ${{ secrets.WANDB_API_KEY }}
+    steps:
+      - name: Get current date
+        id: date
+        run: echo "TSTAMP=20240911204841384320616" >> $GITHUB_ENV
+      - uses: actions/checkout@v4
+      - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
+      - name: Set up Python     
+        uses: actions/setup-python@v5
+        with: 
+          python-version: '3.12.5'
+          cache: 'pip'
+      - name: Install Dependencies
+        run: pip install -r ./requirements.txt
+      - name: Login to W&B
+        run: wandb login
+      - name: execute py script # run file
+        run: python get_runs.py
