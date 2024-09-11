@@ -21,4 +21,4 @@ jobs:
       - name: Login to W&B
         run: wandb login
       - name: Launch Job
-        run: wandb launch -j "russratshin/registry-tutorial/job-source-registry-tutorial-regdemo.py:latest" -q "Queue One"
+        run: wandb launch -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" -q "Queue One"
