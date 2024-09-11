@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Get current date
         id: date
-        run: echo $(date +'%Y%m%d%H%M%S%N')
+        run: echo "TSTAMP=$(date +'%Y%m%d%H%M%S%N')" >> $GITHUB_ENV
       - uses: actions/checkout@v4
       - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
       - name: Set up Python     
@@ -25,4 +25,4 @@ jobs:
         run: wandb login
       - name: Launch Job
         #run: wandb launch -j "russratshin/registry-tutorial/job-source-registry-tutorial-regdemo.py:latest" -q "Queue One"
-        run: wandb launch -j "russratshin/quicklaunch/job-source-quicklaunch-quicklaunch.py:v8" -q "Queue One" --config '{"overrides":{"args": ["${{ steps.date.outputs.date }}"]}}'
+        run: wandb launch -j "russratshin/quicklaunch/job-source-quicklaunch-quicklaunch.py:v8" -q "Queue One" --config '{"overrides":{"args": [${{ env.TSTAMP }}]}}'
