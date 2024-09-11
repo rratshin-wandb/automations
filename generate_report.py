@@ -16,20 +16,22 @@ def main():
     i_check_count = 0
     i_kill = 20
     a_run_ids = ["production_" + tstamp, "candidate_" + tstamp]
-    while i_check_count < i_kill and i_check_run < len(a_run_ids):
+    a_run_plus_states = ["production_" + tstamp + "-finished", "candidate_" + tstamp + "-finished"]
+    while i_check_count < i_kill and i_check_run < len(a_run_plus_states):
         i_check_run = 0
         runs = api.runs(path=f"{ENTITY}/{PROJECT_NAME}")
         for run in runs:
-            print(run.displayName)
-            if run.displayName in a_run_ids:
+            s_run_plus_state = run.displayName + "-" + run.state
+            if s_run_plus_state in a_run_plus_states:
+                print(s_run_plus_state)
                 i_check_run = (i_check_run + 1)
-                print(str(i_check_run))
-        if i_check_run < len(a_run_ids):
+                print("i_check_run [" + str(i_check_run) + "]")
+        if i_check_run < len(a_run_plus_states):
             i_check_count = (i_check_count + 1)
             print("i_check_count [" + str(i_check_count) + "]")
             time.sleep(30)
 
-    if i_check_run == len(a_run_ids):
+    if i_check_run >= len(a_run_plus_states):
         generate_report(tstamp, a_run_ids)
 
 def generate_report(tstamp, a_run_ids):
@@ -92,9 +94,9 @@ def generate_report(tstamp, a_run_ids):
             wr.H2("Model Artifact Information"),
             wr.P(
                 text=[
-                    "To access this model directly, ",
+                    "To access this model collection directly, ",
                     "please ",
-                    wr.Link("click here", url="https://wandb.ai/registry/Test%20Registry?selectionPath=russratshin-org%2Fwandb-registry-Test+Registry%2FLlama3+Fine-Tune&view=membership&tab=overview&version=latest"),
+                    wr.Link("click here", url="https://wandb.ai/registry/Llama%20Models?selectionPath=reviewco_RMVTAR2ST3HJ6%2Fwandb-registry-Llama+Models%2FLlama-3.1-8b&view=versions"),
                     ".",
                 ]
             ),
