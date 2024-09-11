@@ -14,7 +14,7 @@ def main():
     api = wandb.Api()
     i_check_run = 0
     i_check_count = 0
-    i_kill = 20
+    i_kill = 40
     a_run_ids = ["production_" + tstamp, "candidate_" + tstamp]
     a_run_plus_states = ["production_" + tstamp + "-finished", "candidate_" + tstamp + "-finished"]
     while i_check_count < i_kill and i_check_run < len(a_run_plus_states):
