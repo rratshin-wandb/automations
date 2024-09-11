@@ -1,7 +1,6 @@
+import os, sys, time
 import wandb
 import wandb_workspaces.reports.v2 as wr
-import os, sys
-import time
 wandb.require("core")
 
 PROJECT_NAME="eval-llama-3.1-8b-fine-tune"
@@ -14,7 +13,7 @@ def main():
     api = wandb.Api()
     i_check_run = 0
     i_check_count = 0
-    i_kill = 40
+    i_kill = 1
     a_run_ids = ["production_" + tstamp, "candidate_" + tstamp]
     a_run_plus_states = ["production_" + tstamp + "-finished", "candidate_" + tstamp + "-finished"]
     while i_check_count < i_kill and i_check_run < len(a_run_plus_states):
@@ -22,8 +21,9 @@ def main():
         runs = api.runs(path=f"{ENTITY}/{PROJECT_NAME}")
         for run in runs:
             s_run_plus_state = run.displayName + "-" + run.state
+            print("FOUND [" + s_run_plus_state + "]")
             if s_run_plus_state in a_run_plus_states:
-                print(s_run_plus_state)
+                print("MATCHED [" + s_run_plus_state + "]")
                 i_check_run = (i_check_run + 1)
                 print("i_check_run [" + str(i_check_run) + "]")
         if i_check_run < len(a_run_plus_states):
