@@ -1,1 +1,2 @@
 wandb==0.17.7
+wandb_workspaces==0.1.8
