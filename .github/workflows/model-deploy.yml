@@ -23,10 +23,10 @@ jobs:
       - name: Login to W&B
         run: wandb login
       - name: Retrieve Artifacts
+        run: python retrieve_artifacts.py
+      - name: Containerize the artifact in our inference server
         run: sleep 180s
         shell: bash
-      - name: Containerize the artifact in our inference server
-        run: python retrieve_artifacts.py
       #   run: python .github/workflows/retrieve_artifacts.py --registered_model_name "${{ github.event.client_payload.artifact_version_string }}"
       # - name: Containerize the artifact in our inference server
       #   uses: docker/build-push-action@v4
