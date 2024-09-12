@@ -88,7 +88,7 @@ def generate_report(tstamp, a_run_ids):
                     " model. This will automatically run ",
                     wr.Link("this github action workflow", url="https://wandb.ai/"),
                     " to deploy ",
-                    wr.InlineCode(text="Llama-7b:production"),
+                    wr.InlineCode(text="Meta-Llama-3.1-8B:production"),
                     " to GCP ",
                     "(Provided you have the proper permissions to change the alias).",
                 ]
