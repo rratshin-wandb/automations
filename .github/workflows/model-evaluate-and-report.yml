@@ -29,3 +29,5 @@ jobs:
         run: wandb launch -e reviewco -j "reviewco/eval-llama-3.1-8b-fine-tune/job-source-eval-llama-3.1-8b-fine-tune-evaluate_model.py:latest" --config '{"overrides":{"args":["${{env.TSTAMP}}", "production"]}}' -q "ReviewCo-Lambda-A10"
       - name: Generate Evaluation Report
         run: python generate_report.py ${{env.TSTAMP}}
+      - name: Inference Evaluation Deployment
+        run: python inference_evaluation.py
