@@ -1,0 +1,14 @@
+name: Webhook Echo
+
+on:
+  repository_dispatch:
+    types: [webhook-echo]
+
+jobs:
+  echo-payload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo Webhook Payload
+        run: |
+          echo "Received webhook payload:"
+          echo '${{ toJSON(github.event.client_payload) }}'
